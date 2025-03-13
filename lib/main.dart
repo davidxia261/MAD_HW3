@@ -237,29 +237,27 @@ class _CardMatchState extends State<CardMatch> with SingleTickerProviderStateMix
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Expanded(
-            child: GridView.builder(
-              padding: const EdgeInsets.all(16),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-                childAspectRatio: 0.7,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-              ),
-              itemCount: cardMatchProvider.randomCards.length,
-              itemBuilder: (context, index) {
-                return FlipCardItem(
-                  index: index,
-                  frontImage: 'assets/images/${cardMatchProvider.randomCards[index]}',
-                  isFlipped: cardMatchProvider.flippedCards[index] ?? false,
-                  onFlip: () {
-                    if (cardMatchProvider.matches == 8) {
-                      showWin(context);
-                    }
-                  },
-                );
-              }),
-            ),
+      body: GridView.builder(
+        padding: const EdgeInsets.all(16),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4,
+          childAspectRatio: 0.7,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+        ),
+        itemCount: cardMatchProvider.randomCards.length,
+        itemBuilder: (context, index) {
+          return FlipCardItem(
+            index: index,
+            frontImage: 'assets/images/${cardMatchProvider.randomCards[index]}',
+            isFlipped: cardMatchProvider.flippedCards[index] ?? false,
+            onFlip: () {
+              if (cardMatchProvider.matches == 8) {
+                showWin(context);
+              }
+            },
+          );
+        }),
       );
   }
 }
